@@ -69,19 +69,6 @@ npm run dev
 ### Admin Dashboard
 <img width="1284" alt="Admin Panel" src="https://github.com/user-attachments/assets/e1331816-2099-4596-a451-5e71365624ca" />
 
-## 🎓 Academic Context
-
-This project was developed as part of the Integration Project for the academic year 2024/2025 at:
-- **Institution:** Institut Supérieur des Études Technologiques de Jendouba
-- **Department:** Technologies de l'Informatique
-- **Specialty:** Développement des Systèmes Informatiques
-
-**Team Members:**
-- Ayoub Manai
-- Oussama Ben Abdallah
-- Aziz Bouheni
-
-**Academic Supervisor:** Mme Hayfa Jdidi
 
 ## 📁 Project Structure
 ```
@@ -103,11 +90,6 @@ Dar-El-3anbar/
 - CSRF token validation
 
 ## 🎯 Available Venues
-
-- **Palais Royal** (Tunis) - Up to 500 guests - ⭐ 4.8/5
-- **Le Diamant** (Hammamet) - Up to 350 guests - ⭐ 4.6/5
-- **Garden Palace** (Sousse) - Up to 400 guests - ⭐ 4.7/5
-- Plus 5 other prestigious venues
 
 ## 📄 License
 
