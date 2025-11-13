@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasyPHP Connection Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; border-radius: 5px; }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        .info { background-color: #d1ecf1; border-color: #bee5eb; }
+        button { padding: 10px 15px; margin: 5px; cursor: pointer; }
+        pre { background: #f8f9fa; padding: 10px; border-radius: 3px; overflow-x: auto; }
+        .url-test { margin: 10px 0; padding: 10px; border-left: 4px solid #007bff; background: #f8f9fa; }
+    </style>
+</head>
+<body>
+    <h1>🔧 EasyPHP Connection Tester</h1>
+    <p>This tool will help you find the correct URL for your EasyPHP server.</p>
+    
+    <div class="test-section info">
+        <h3>📋 Instructions</h3>
+        <ol>
+            <li>Make sure EasyPHP is running</li>
+            <li>Click "Test All Connections" below</li>
+            <li>Check which URLs work</li>
+            <li>Use the working URL in your React app</li>
+        </ol>
+    </div>
+
+    <div class="test-section">
+        <button onclick="testAllConnections()" style="background: #28a745; color: white; border: none;">
+            🚀 Test All Connections
+        </button>
+        <button onclick="clearResults()" style="background: #6c757d; color: white; border: none;">
+            🗑️ Clear Results
+        </button>
+    </div>
+
+    <div id="results"></div>
+
+    <div class="test-section">
+        <h3>🎯 Manual Tests</h3>
+        <p>Try opening these URLs directly in your browser:</p>
+        <div class="url-test">
+            <strong>Port 8888:</strong><br>
+            <a href="http://localhost:8888/" target="_blank">http://localhost:8888/</a><br>
+            <a href="http://localhost:8888/my_project/" target="_blank">http://localhost:8888/my_project/</a><br>
+            <a href="http://localhost:8888/my_project/register.php" target="_blank">http://localhost:8888/my_project/register.php</a>
+        </div>
+        <div class="url-test">
+            <strong>Port 80 (Default):</strong><br>
+            <a href="http://localhost/" target="_blank">http://localhost/</a><br>
+            <a href="http://localhost/my_project/" target="_blank">http://localhost/my_project/</a><br>
+            <a href="http://localhost/my_project/register.php" target="_blank">http://localhost/my_project/register.php</a>
+        </div>
+    </div>
+
+    <script>
+        async function testAllConnections() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<h3>🔄 Testing connections...</h3>';
+            
+            const urls = [
+                'http://localhost:8888/',
+                'http://localhost:8888/my_project/',
+                'http://localhost:8888/my_project/register.php',
+                'http://127.0.0.1:8888/',
+                'http://127.0.0.1:8888/my_project/',
+                'http://127.0.0.1:8888/my_project/register.php',
+                'http://localhost/',
+                'http://localhost/my_project/',
+                'http://localhost/my_project/register.php',
+                'http://127.0.0.1/',
+                'http://127.0.0.1/my_project/',
+                'http://127.0.0.1/my_project/register.php'
+            ];
+            
+            let results = [];
+            
+            for (const url of urls) {
+                try {
+                    console.log(`Testing: ${url}`);
+                    
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 5000);
+                    
+                    const response = await fetch(url, {
+                        method: 'GET',
+                        signal: controller.signal,
+                        mode: 'no-cors'
+                    });
+                    
+                    clearTimeout(timeoutId);
+                    
+                    if (response.type === 'opaque') {
+                        results.push({
+                            url: url,
+                            status: 'success',
+                            message: 'Server responds (CORS blocked - this is normal)'
+                        });
+                    } else {
+                        results.push({
+                            url: url,
+                            status: 'success',
+                            message: `Status: ${response.status}`
+                        });
+                    }
+                    
+                } catch (error) {
+                    let message = '';
+                    if (error.name === 'AbortError') {
+                        message = 'Timeout - Server not responding';
+                    } else if (error.message.includes('Failed to fetch')) {
+                        message = 'Connection refused - Server not running';
+                    } else {
+                        message = error.message;
+                    }
+                    
+                    results.push({
+                        url: url,
+                        status: 'error',
+                        message: message
+                    });
+                }
+            }
+            
+            displayResults(results);
+        }
+        
+        function displayResults(results) {
+            const resultsDiv = document.getElementById('results');
+            let html = '<h3>📊 Test Results</h3>';
+            
+            const workingUrls = results.filter(r => r.status === 'success');
+            const failedUrls = results.filter(r => r.status === 'error');
+            
+            if (workingUrls.length > 0) {
+                html += '<div class="test-section success">';
+                html += '<h4>✅ Working URLs:</h4>';
+                workingUrls.forEach(result => {
+                    html += `<div><strong>${result.url}</strong><br><small>${result.message}</small></div><br>`;
+                });
+                html += '</div>';
+            }
+            
+            if (failedUrls.length > 0) {
+                html += '<div class="test-section error">';
+                html += '<h4>❌ Failed URLs:</h4>';
+                failedUrls.forEach(result => {
+                    html += `<div><strong>${result.url}</strong><br><small>${result.message}</small></div><br>`;
+                });
+                html += '</div>';
+            }
+            
+            // Recommendations
+            html += '<div class="test-section info">';
+            html += '<h4>💡 Recommendations:</h4>';
+            
+            if (workingUrls.length === 0) {
+                html += '<p><strong>❌ No servers found!</strong></p>';
+                html += '<ul>';
+                html += '<li>Check if EasyPHP is running</li>';
+                html += '<li>Try starting EasyPHP as Administrator</li>';
+                html += '<li>Check EasyPHP configuration for port settings</li>';
+                html += '<li>Look for EasyPHP in system tray</li>';
+                html += '</ul>';
+            } else {
+                const registerUrls = workingUrls.filter(r => r.url.includes('register.php'));
+                if (registerUrls.length > 0) {
+                    html += '<p><strong>✅ Found working register.php URLs!</strong></p>';
+                    html += '<p>Use this URL in your React app:</p>';
+                    html += `<pre>${registerUrls[0].url}</pre>`;
+                } else {
+                    const baseUrls = workingUrls.filter(r => r.url.includes('my_project'));
+                    if (baseUrls.length > 0) {
+                        html += '<p><strong>⚠️ EasyPHP is running, but register.php not found</strong></p>';
+                        html += '<p>Make sure register.php is in the correct folder:</p>';
+                        html += `<pre>C:\\Program Files (x86)\\EasyPHP-Devserver-17\\eds-www\\my_project\\register.php</pre>`;
+                    }
+                }
+            }
+            html += '</div>';
+            
+            resultsDiv.innerHTML = html;
+        }
+        
+        function clearResults() {
+            document.getElementById('results').innerHTML = '';
+        }
+        
+        // Test one specific URL with detailed info
+        async function testSpecificUrl() {
+            const url = prompt("Enter URL to test:", "http://localhost:8888/my_project/register.php");
+            if (!url) return;
+            
+            try {
+                const response = await fetch(url, {
+                    method: 'GET',
+                    mode: 'cors'
+                });
+                
+                const text = await response.text();
+                alert(`Success!\nStatus: ${response.status}\nResponse: ${text.substring(0, 200)}...`);
+                
+            } catch (error) {
+                alert(`Error: ${error.message}`);
+            }
+        }
+    </script>
+</body>
+</html>

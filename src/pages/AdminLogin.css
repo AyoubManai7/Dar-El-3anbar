@@ -1,0 +1,51 @@
+/* AdminLogin.css */
+.welcome-message {
+  text-align: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.welcome-message h2 {
+  color: #ffcb05;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.welcome-message p {
+  color: #2c3e50;
+  font-size: 16px;
+}
+
+/* Gold gradient for navbar logo text */
+.gold-gradient {
+  background: linear-gradient(to right, #ffd700, #ffcb05);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #ffcb05;
+}
+
+/* Nav link styling */
+.nav-link {
+  color: #555;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #ffcb05;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .signup-container {
+    max-width: 100%;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 20px;
+  }
+}
