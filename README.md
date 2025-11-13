@@ -1,7 +1,7 @@
 # 🏛️ Dar El 3nbar - Event Hall Reservation Platform
 
-> A modern web application for booking event halls across Tunisia - developed as an academic project at ISET Jendouba
-
+> A modern web application for booking event halls across Tunisia.
+> 
 ## 📋 Overview
 
 Dar El 3nbar is a comprehensive platform designed to simplify the process of finding and booking event venues for weddings, conferences, and private celebrations. The application bridges the gap between venue owners and clients through real-time availability checks, secure bookings, and intuitive management tools.
@@ -25,8 +25,7 @@ Dar El 3nbar is a comprehensive platform designed to simplify the process of fin
 
 **Frontend:** React.js, HTML5, CSS3, Tailwind CSS, Vite  
 **Backend:** PHP 8, MySQL 8.0, REST API  
-**Tools:** Visual Studio Code, Git/GitHub, StarUML
-
+**Tools:** Visual Studio Code, Git/GitHub
 ## 🚀 Getting Started
 
 ### Prerequisites
