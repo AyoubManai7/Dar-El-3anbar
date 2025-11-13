@@ -9,53 +9,16 @@
 
 
 ### Hall Catalog
-![Catalog](screenshots/catalog.png)
+<img width="1313" height="655" alt="image" src="https://github.com/user-attachments/assets/557bbbe2-8cdd-4649-88b9-c635cacdbf0c" />
+
 
 ### Login Interface
-![Login](screenshots/login.png)
+<img width="1311" height="637" alt="image" src="https://github.com/user-attachments/assets/3a4d647a-9412-4cec-a684-91a26ccdddb8" />
+
 
 ### Admin Dashboard
-![Admin Panel](screenshots/admin.png)
+<img width="1284" height="654" alt="image" src="https://github.com/user-attachments/assets/e1331816-2099-4596-a451-5e71365624ca" />
 
-## 🚀 Installation & Setup
-
-### Prerequisites
-- PHP 8.0 or higher
-- MySQL 8.0
-- Node.js 16+ and npm
-- Composer
-
-### Backend Setup
-```bash
-# Clone the repository
-git clone https://github.com/AyoubManai7/Dar-El-3anbar.git
-cd Dar-El-3anbar
-
-# Install PHP dependencies
-composer install
-
-# Configure database
-cp .env.example .env
-# Edit .env with your database credentials
-
-# Run migrations
-php artisan migrate
-
-# Start PHP server
-php -S localhost:8000
-```
-
-### Frontend Setup
-```bash
-# Navigate to frontend directory
-cd frontend
-
-# Install dependencies
-npm install
-
-# Start development server
-npm start
-```
 
 ## 🎯 Features in Detail
 
@@ -107,14 +70,6 @@ Dar-El-3anbar/
 - XSS protection
 - CSRF tokens
 
-## 🧪 Testing
-```bash
-# Run backend tests
-php vendor/bin/phpunit
-
-# Run frontend tests
-npm test
-```
 
 ## 🗺️ Roadmap
 
@@ -125,20 +80,6 @@ npm test
 - [ ] Calendar integration
 - [ ] Review and rating system
 
-## 👨‍💻 Authors
-
-- **Ayoub Manai** - [GitHub](https://github.com/AyoubManai7)
-- **Oussama Ben Abdallah**
-- **Aziz Bouheni**
-
-**Academic Supervisor:** Mme Hayfa Jdidi
-
-## 🎓 Academic Context
-
-**Institution:** Institut Supérieur des Études Technologiques de Jendouba  
-**Department:** Technologies de l'Informatique  
-**Specialty:** Développement des Systèmes Informatiques  
-**Academic Year:** 2024/2025
 
 ## 📄 Documentation
 
@@ -148,25 +89,11 @@ Full project documentation available in `/docs`:
 - Database schema
 - API documentation
 
-## 🤝 Contributing
-
-This is an academic project. Contributions, issues, and feature requests are welcome!
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
 
 ## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
-
-- ISET Jendouba for providing the academic framework
-- Our supervisor Mme Hayfa Jdidi for guidance
-- All team members for their dedication
 
 ## 📧 Contact
 
