@@ -99,6 +99,7 @@ This project is licensed under the MIT License.
 
 **Ayoub Manai**  
 GitHub: [@AyoubManai7](https://github.com/AyoubManai7)
+
 Email: ayoubmanai106@gmail.com
 ---
 
